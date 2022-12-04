@@ -5,10 +5,10 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Card, Grid, TextField } from "@mui/material";
 import { Box, Stack } from "@mui/system";
+import { useState } from "react";
 
-export default function Results(movie) {
-  console.log(movie.movie);
-
+export default function Results({movie}) {
+  const [search,setSearch] = useState("")
   return (
     <>
       <Stack justifyContent="center" alignItems="center">
@@ -20,17 +20,18 @@ export default function Results(movie) {
               variant="standard"
               color="primary"
               sx={{ width: "500px" }}
+              value={search}
+              onChange={e => setSearch(e.target.value)}
               
             />
           </Stack>
-
           <Grid
             container
             rowSpacing={2}
             columnSpacing={{ xs: 1, sm: 2, md: 3 }}
           >
             {movie &&
-              movie.movie.map((item, index) => (
+              movie.filter(item => item.title.toLowerCase().includes(search.toLowerCase())).map((item, index) => (
                 <Grid item xs={4} key={index}>
                   <Card sx={{ maxWidth: 360 }}>
                     <CardMedia
