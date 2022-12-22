@@ -117,6 +117,8 @@ export const Header = ({ children }) => {
               }}
             >
               <ListItemButton
+                  onClick={() => navigate(text.path)}
+
                 sx={{
                   minHeight: 48,
                   justifyContent: open ? "initial" : "center",
@@ -124,7 +126,6 @@ export const Header = ({ children }) => {
                 }}
               >
                 <ListItemIcon
-                  onClick={() => navigate(text.path)}
                   sx={{
                     minWidth: 0,
                     mr: open ? 3 : "auto",
