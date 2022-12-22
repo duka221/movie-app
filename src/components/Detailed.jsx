@@ -39,8 +39,8 @@ export const Detailed = () => {
                       }}
                       gap={2}
                       direction={{
-                        lg: "row",
-                        md: "row",
+                        lg: "column",
+                        md: "column",
                         sm: "column",
                         sx: "column",
                       }}
@@ -95,7 +95,7 @@ export const Detailed = () => {
                               <Typography
                                 fontSize={14}
                                 textAlign="left"
-                                color="text.disabled"
+                                color="#E2B616"
                                 sx={{ opacity: 0.6 }}
                               >
                                 IMDB {movie.vote_average}
