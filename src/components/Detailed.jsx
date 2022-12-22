@@ -13,7 +13,7 @@ export const Detailed = () => {
           setMovie( res.data.results.find(item => item.id === JSON.parse(id)))
           console.log(res.data.results.find(item => item.id === JSON.parse(id)))
         })
-    }, [])
+    }, [id])
     return(
       <>
         {movie && <Box sx={{ height: "800px", width: 1 }}>
