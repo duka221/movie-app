@@ -4,7 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Card, Grid, TextField } from "@mui/material";
-import { Box, Stack } from "@mui/system";
+import {  Stack } from "@mui/system";
 import { useState } from "react";
 import * as React from 'react';
 import FavoriteIcon from "@mui/icons-material/Favorite";

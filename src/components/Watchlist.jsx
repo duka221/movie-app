@@ -1,8 +1,5 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Grid, Stack, TextField } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, Grid, Stack, } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import { useEffect, useState } from "react";
 import axios from "axios"
 import {  toast } from 'react-toastify';
