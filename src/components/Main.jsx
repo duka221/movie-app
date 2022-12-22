@@ -1,7 +1,8 @@
 import { Typography } from "@mui/material"
 import axios from "axios"
 import { useEffect,useState } from "react"
-import Results from "./Results"
+import Movies from "./Movies"
+
 
 export const Main = () => {
     const [movie, setMovie] = useState([]);
@@ -15,7 +16,7 @@ export const Main = () => {
     
     return(
         <>
-            {movie.length === 0 ? (<Typography> Loading... </Typography>): <Results movie={movie} setMovie={setMovie}/>}
+            {movie.length === 0 ? (<Typography> Loading... </Typography>): <Movies movie={movie} setMovie={setMovie}/>}
         </>
             
     )
