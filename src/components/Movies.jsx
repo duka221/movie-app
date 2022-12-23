@@ -4,55 +4,68 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Card, Grid, TextField } from "@mui/material";
-import {  Stack } from "@mui/system";
+import { Stack } from "@mui/system";
 import { useState } from "react";
-import * as React from 'react';
+import * as React from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import {  toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 
-export default function Movies({movie}) {
-  const navigate = useNavigate()
-  const [search,setSearch] = useState("")
-  const addTo =(id,name)=>{
-    let arr = JSON.parse(localStorage.getItem(name)) ?? []
-    
-    if(!arr.find(element => element === id) ){
-      arr.push(movie.find(element => element.id === id).id)
-      toast.success(`Movie added to ${name}`)
-    }else{
-      toast.error(`This movie already exists in the ${name}`)
+export default function Movies({ movie }) {
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const addTo = (id, name) => {
+    let arr = JSON.parse(localStorage.getItem(name)) ?? [];
+
+    if (!arr.find((element) => element === id)) {
+      arr.push(movie.find((element) => element.id === id).id);
+      toast.success(`Movie added to ${name}`);
+    } else {
+      toast.error(`This movie already exists in the ${name}`);
     }
-    localStorage.setItem(name,JSON.stringify(arr))
-   
-  }
+    localStorage.setItem(name, JSON.stringify(arr));
+  };
   return (
     <>
-    
-          <Stack justifyContent="center" alignItems="center">
-          <Stack justifyContent="center" alignItems="center" py={2}>
-            <TextField
-              label="Search Movie"
-              variant="standard"
-              color="primary"
-              sx={{ width: "500px"}}
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              
-            />
-          </Stack>
-          <Grid
-            container
-            rowSpacing={2}
-            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-          >
-            {movie &&
-              movie.filter(item => item.title.toLowerCase().includes(search.toLowerCase())).map((item, index) => (
-                <Grid  item xs={4} key={index}>
-                  <Card sx={{ maxWidth: 360, height:600 }}>
+      <Stack justifyContent="center" alignItems="center">
+        <Stack justifyContent="center" alignItems="center" py={2}>
+          <TextField
+            label="Search Movie"
+            variant="standard"
+            color="primary"
+            sx={{
+              width: { lg: "400px", md: "400px", sm: "200px", xs: "200px" },
+            }}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </Stack>
+        <Grid container rowSpacing={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          {movie &&
+            movie
+              .filter((item) =>
+                item.title.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((item, index) => (
+                <Grid
+                  item
+                  xs={{
+                    lg: 4,
+                    md: 4,
+                    sm: 2,
+                    xs: 1,
+                  }}
+                  key={index}
+                >
+                  <Card
+                    sx={{
+                      maxWidth: 360,
+                      height: { lg: 605, md: 605, sm: 645, xs: 645 },
+                    }}
+                  >
                     <CardMedia
                       component="img"
                       height="400px"
@@ -62,7 +75,12 @@ export default function Movies({movie}) {
                       }
                     />
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="div" color="#E2B616">
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                        color="#E2B616"
+                      >
                         {item.title}
                       </Typography>
                       <Typography variant="body2" color="text.secondary">
@@ -72,25 +90,45 @@ export default function Movies({movie}) {
                       </Typography>
                     </CardContent>
                     <Stack direction="row">
-                    <CardActions >
-                      <Button onClick={()=> navigate(`detailed/${item.id}`)}> Detailed </Button>
-                    </CardActions>
-                    <CardActions sx={{":hover":{backgroundColor:"grey"},cursor:"pointer"}} onClick={()=> addTo(item.id,"favorites")}>
-                      <FavoriteIcon/>
-                    </CardActions>
-                    <CardActions sx={{":hover":{backgroundColor:"grey"},cursor:"pointer"}} onClick={()=> addTo(item.id,"liked")}>
-                      <ThumbUpIcon/>
-                    </CardActions>
-                    <CardActions sx={{":hover":{backgroundColor:"grey"},cursor:"pointer"}} onClick={()=> addTo(item.id,"watchlist")}>
-                      <VisibilityIcon/>
-                    </CardActions>
+                      <CardActions>
+                        <Button onClick={() => navigate(`detailed/${item.id}`)}>
+                          {" "}
+                          Detailed{" "}
+                        </Button>
+                      </CardActions>
+                      <CardActions
+                        sx={{
+                          ":hover": { backgroundColor: "grey" },
+                          cursor: "pointer",
+                        }}
+                        onClick={() => addTo(item.id, "favorites")}
+                      >
+                        <FavoriteIcon />
+                      </CardActions>
+                      <CardActions
+                        sx={{
+                          ":hover": { backgroundColor: "grey" },
+                          cursor: "pointer",
+                        }}
+                        onClick={() => addTo(item.id, "liked")}
+                      >
+                        <ThumbUpIcon />
+                      </CardActions>
+                      <CardActions
+                        sx={{
+                          ":hover": { backgroundColor: "grey" },
+                          cursor: "pointer",
+                        }}
+                        onClick={() => addTo(item.id, "watchlist")}
+                      >
+                        <VisibilityIcon />
+                      </CardActions>
                     </Stack>
                   </Card>
                 </Grid>
               ))}
-          </Grid>
+        </Grid>
       </Stack>
-    
     </>
   );
 }
