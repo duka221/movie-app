@@ -16,10 +16,10 @@ import { useNavigate } from "react-router-dom";
 export const Favorites = () => {
   const navigate = useNavigate();
   let [item, setItem] = useState(
-    JSON.parse(localStorage.getItem("favorites")) ?? []
+    JSON.parse(localStorage.getItem("favorites")) ?? [] // თუ ლოკალსთორეიჯიდან არ მოვა მაშინ ცარიელი მასივი იქნება
   );
   const removeItem = (id) => {
-    let arr = item.filter((movie) => movie !== id);
+    let arr = item.filter((movie) => movie !== id); //arr ში ვტოვებთ ისეთ id-ს რომელიც არ ემთხვევა წასაშლელი ელემენტის id-s
     localStorage.setItem("favorites", JSON.stringify(arr));
     setItem(arr);
     toast.info("Movie has been deleted");

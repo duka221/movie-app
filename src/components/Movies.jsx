@@ -18,10 +18,11 @@ export default function Movies({ movie }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const addTo = (id, name) => {
-    let arr = JSON.parse(localStorage.getItem(name)) ?? [];
+    let arr = JSON.parse(localStorage.getItem(name)) ?? []; // თუ ლოკალსთორეიჯიდან არ მოვა მაშინ ცარიელი მასივი იქნება
 
     if (!arr.find((element) => element === id)) {
-      arr.push(movie.find((element) => element.id === id).id);
+      // ვამოწმებთ არსებობაზე
+      arr.push(movie.find((element) => element.id === id).id); //ვპოულობ ერთ კონკრეტულ ელემენტის id-ს და ვადარებთ პარამეტრიდან მოსულ id-ს
       toast.success(`Movie added to ${name}`);
     } else {
       toast.error(`This movie already exists in the ${name}`);
